@@ -63,44 +63,44 @@ const router = express.Router();
 
 
 
-// let players =
-//    [
-//        {
-//            "name": "manish",
-//            "dob": "1/1/1995",
-//            "gender": "male",
-//            "city": "jalandhar",
-//            "sports": [
-//                "swimming"
-//            ]
-//        },
-//        {
-//            "name": "gopal",
-//            "dob": "1/09/1995",
-//            "gender": "male",
-//            "city": "delhi",
-//            "sports": [
-//                "soccer"
-//            ],
-//        },
-//        {
-//            "name": "lokesh",
-//            "dob": "1/1/1990",
-//            "gender": "male",
-//            "city": "mumbai",
-//            "sports": [
-//                "soccer"
-//            ],
-//        },
-//    ]
+let players =
+   [
+       {
+           "name": "manish",
+           "dob": "1/1/1995",
+           "gender": "male",
+           "city": "jalandhar",
+           "sports": [
+               "swimming"
+           ]
+       },
+       {
+           "name": "gopal",
+           "dob": "1/09/1995",
+           "gender": "male",
+           "city": "delhi",
+           "sports": [
+               "soccer"
+           ],
+       },
+       {
+           "name": "lokesh",
+           "dob": "1/1/1990",
+           "gender": "male",
+           "city": "mumbai",
+           "sports": [
+               "soccer"
+           ],
+       },
+   ]
  
-//    router.post('/players', function (req, res) {
+   router.post('/players', function (req, res) {
  
-//        //LOGIC WILL COME HERE
-//        let ele= req.body.element
-//        players.push(ele)
-//        res.send(  { data: players , status: true }  )
-//    })
+       //LOGIC WILL COME HERE
+       let ele= req.body.element
+       players.push(ele)
+       res.send(  { data: players , status: true }  )
+   })
 
 
 // -write an api which gives the missing number in an array of integers starting from 1….e.g [1,2,3,5,6,7] : 4 is missing
