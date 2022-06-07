@@ -3,13 +3,37 @@ const BookModel= require("../models/bookModel")
 
 const createBook= async function (req, res) {
     let data= req.body
-
     let savedData= await BookModel.create(data)
     res.send({msg: savedData})
 }
 
-const getBooksData= async function (req, res) {
+const bookList= async function (req, res) {
+    let allBooks= await BookModel.find().select({bookName :1, authorName: 1, _id:0})
+    res.send({msg: allBooks})
+}
 
+const getBooksInYear= async function (req, res) {
+    let year= req.query.year
+    let allBooks= await BookModel.find({year})
+    res.send({msg: allBooks})
+}
+
+const getPerticularBook= async function (req, res) {
+let allBooks= await BookModel.find().sort({year: 1}).limit(5)
+    res.send({msg: allBooks})
+}
+// {year: 2021}
+// {bookName: /.*Harry*/i}
+
+const getXINRBooks= async function (req, res) {
+    let allBooks= await BookModel.find({'price.indianPrice': {$in: ["150inr", "300inr", "550inr"]}})
+    res.send({msg: allBooks})
+}
+
+const getRandomBooks= async function (req, res) {
+    let allBooks= await BookModel.find({$or: [{stockAvailable: true}, {totalPages: {$gt: 500}}]} )
+    res.send({msg: allBooks})
+}
     // let allBooks= await BookModel.find( ).count() // COUNT
 
     // let allBooks= await BookModel.find( { authorName : "Chetan Bhagat" , isPublished: true  } ) // AND
@@ -65,21 +89,24 @@ const getBooksData= async function (req, res) {
     
     // ASYNC AWAIT
     
-    let a= 2+4
-    a= a + 10
-    console.log(a)
-    let allBooks= await BookModel.find( )  //normally this is an asynchronous call..but await makes it synchronous
+    // let a= 2+4
+    // a= a + 10
+    // console.log(a)
+      //normally this is an asynchronous call..but await makes it synchronous
 
 
-    // WHEN AWAIT IS USED: - database + axios
-    //  AWAIT can not be used inside forEach , map and many of the array functions..BE CAREFUL
-    console.log(allBooks)
-    let b = 14
-    b= b+ 10
-    console.log(b)
-    res.send({msg: allBooks})
-}
+    // // WHEN AWAIT IS USED: - database + axios
+    // //  AWAIT can not be used inside forEach , map and many of the array functions..BE CAREFUL
+    // console.log(allBooks)
+    // let b = 14
+    // b= b+ 10
+    // console.log(b)
+   
 
 
 module.exports.createBook= createBook
-module.exports.getBooksData= getBooksData
+module.exports.bookList= bookList
+module.exports.getBooksInYear= getBooksInYear
+module.exports.getPerticularBook= getPerticularBook
+module.exports.getXINRBooks= getXINRBooks
+module.exports.getRandomBooks= getRandomBooks
