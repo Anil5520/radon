@@ -16,10 +16,16 @@ mongoose.connect("mongodb+srv://functionup-cohort:G0Loxqc9wFEGyEeJ@cluster0.rzot
 
 app.use (
     function (req, res, next) {
-        console.log ("inside GLOBAL MW");
+        const currentDate=new Date()
+        console.log(currentDate)
+
+        let ip= require("ip")
+        console.log(ip.address())
+
+        console.log (req.path);
         next();
-  }
-  );
+    }
+);
 
 app.use('/', route);
 
