@@ -23,7 +23,7 @@ TOPIC: Middleware2
 	address:"New delhi",
 	age: 90,
  	gender: “female” // Allowed values are - “male”, “female”, “other”
-	isFreeAppUser: false // Default false value.
+	isFreeAppUser: false //  Default false value.
 }
 ```
 

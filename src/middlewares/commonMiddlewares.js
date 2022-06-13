@@ -1,26 +1,36 @@
+const { createUser } = require("../controllers/userController")
+const { createProduct } = require("../controllers/productController")
 
 const mid1= function ( req, res, next) {
-    req.falana= "hi there. i am adding something new to the req object"
-    console.log("Hi I am a middleware named Mid1")
-    next()
+    let data = req.headers.isfreeappuser
+    console.log(req.headers)
+    if (!data){
+        return res.send({msg:"request is missing a mandatory header"})
+    }
+    else next()
 }
 
-const mid2= function ( req, res, next) {
-    console.log("Hi I am a middleware named Mid2")
-    next()
-}
+// const userCheck= async function(req,res,next){
+//     const userData= req.body.userId
+//     const check= await createUser.findById({_id : userData}).select(({_id : 1}))
+//     if(!check){
+//         return res.send({msg:"not a valid user"})
+//     }
+//     else next()
+// }
 
-const mid3= function ( req, res, next) {
-    console.log("Hi I am a middleware named Mid3")
-    next()
-}
+// const productCheck= async function(req,res,next){
+//     const userData= req.body.userId
+//     const check= await createProduct.findById({_id : userData}).select(({_id : 1}))
+//     if(!check){
+//         return res.send({msg:"not a valid product"})
+//     }
+//     else next()
+// }
 
-const mid4= function ( req, res, next) {
-    console.log("Hi I am a middleware named Mid4")
-    next()
-}
 
 module.exports.mid1= mid1
-module.exports.mid2= mid2
-module.exports.mid3= mid3
-module.exports.mid4= mid4
+// module.exports.userCheck= userCheck
+// module.exports.productCheck= productCheck
+
+ 
