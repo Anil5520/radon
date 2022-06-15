@@ -28,11 +28,11 @@ const authorise = async function(req, res, next) {
     return res.send("No such user exists"); 
   }
   
-  //userId for which the request is made. In this case message to be posted.
   let userToBeModified = req.params.userId
-  //userId for the logged-in user
+ 
   let token = req.headers["x-Auth-token"];
     if (!token) token = req.headers["x-auth-token"];
+
   let decodedToken = jwt.verify(token, "functionup-radon");
   let userLoggedIn = decodedToken.userId
 
